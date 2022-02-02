@@ -1,0 +1,80 @@
+export const optionsBrand = [
+    { _id: "ALPA", name: "ALPA" },
+    { _id: "TIKKURILA", name: "TIKKURILA" },
+    { _id: "CAPAROL", name: "CAPAROL" },
+    { _id: "ALPINA", name: "ALPINA" },
+    { _id: "BECKERS", name: "BECKERS" },
+    { _id: "BRITE", name: "BRITE" },
+    { _id: "ТЕКС", name: "ТЕКС" },
+    { _id: "SIKKENS", name: "SIKKENS" },
+    { _id: "DULUX", name: "DULUX" },
+    { _id: "MARSHALL", name: "MARSHALL" },
+    { _id: "PINOTEX", name: "PINOTEX" },
+    { _id: "HAMMERITE", name: "HAMMERITE" },
+    { _id: "FINNCOLOR", name: "FINNCOLOR" },
+    { _id: "ЯРОСЛАВСКИЕ КРАСКИ", name: "ЯРОСЛАВСКИЕ КРАСКИ " },
+    { _id: "БЫСТРОРЕМОНТ", name: "БЫСТРОРЕМОНТ" },
+    { _id: "ПЯТЬ МАСТЕРОВ", name: "ПЯТЬ МАСТЕРОВ" },
+    { _id: "NEOMID", name: "NEOMID" },
+    { _id: "FAKTURA", name: "FAKTURA " },
+    { _id: "VGT", name: "VGT" },
+    { _id: "LITOKOL", name: "LITOKOL" },
+    { _id: "MAGPAINT", name: "MAGPAINT" },
+    { _id: "KIM TEC", name: "KIM TEC" },
+    { _id: "QUELYD", name: "QUELYD" },
+    { _id: "TYTAN PROFESSIONAL", name: "TYTAN PROFESSIONAL" },
+    { _id: "VINCENT DECOR", name: "VINCENT DECOR" },
+    { _id: "MAPEI", name: "MAPEI" },
+    { _id: "COLOR EXPERT", name: "COLOR EXPERT" },
+    { _id: "MATRIX", name: "MATRIX" },
+    { _id: "СДЕЛАЙ ПОЛ", name: "СДЕЛАЙ ПОЛ" },
+    { _id: "АРТЕКС", name: "АРТЕКС" },
+    { _id: "OSCAR", name: "OSCAR" },
+    { _id: "CERESIT", name: "CERESIT" }
+];
+export const optionsProduct = [
+    { _id: "лкм", name: "Лакокрасочные материалы" },
+    { _id: "cопутствующие материалы", name: "Сопутствующие материалы" },
+    { _id: "инструмент", name: "Инструмент" },
+    { _id: "колорант", name: "колорант" }
+];
+export const optionsProductCategory = [
+    { _id: "эмаль", name: "эмаль" },
+    { _id: "краска", name: "краска" },
+    { _id: "грунтовка", name: "грунтовка" },
+    { _id: "очистка", name: "очистка" },
+    { _id: "лессир", name: "лессир" },
+    { _id: "декор", name: "декор" },
+    { _id: "шпатлевка", name: "шпатлевка" },
+    { _id: "затирка", name: "затирка" },
+    { _id: "колорант", name: "колорант" },
+    { _id: "клей", name: "клей" },
+    { _id: "валик", name: "валик" },
+    { _id: "кисть", name: "кисть" },
+    { _id: "антисептик", name: "антисептик" },
+    { _id: "антиплесень", name: "антиплесень" },
+    { _id: "герметик", name: "герметик" },
+    { _id: "гидроизоляция", name: "гидроизоляция" },
+    { _id: "губка", name: "губка" },
+    { _id: "клей для обоев", name: "клей для обоев" },
+    { _id: "клей-герметик", name: "клей-герметик" },
+    { _id: "колер", name: "колер" },
+    { _id: "тестер", name: "тестер" },
+    { _id: "ручка", name: "ручка" },
+    { _id: "стеклохолст", name: "стеклохолст" },
+    { _id: "скотч", name: "скотч" },
+    { _id: "шубка", name: "шубка" },
+    { _id: "каталог", name: "каталог" },
+    { _id: "другое", name: "другое" }
+];
+export const optionsScrubRating = [
+    { _id: "", name: "нет" },
+    { _id: "1", name: "1 класс" },
+    { _id: "2", name: "2 класс" },
+    { _id: "3", name: "3 класс" }
+];
+export const optionsWos = [
+    { _id: "water", name: "вода" },
+    { _id: "solvent", name: "уайт-спирит" },
+    { _id: "other", name: "другое" }
+];

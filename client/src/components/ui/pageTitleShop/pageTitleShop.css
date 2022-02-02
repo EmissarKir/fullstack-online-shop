@@ -1,0 +1,40 @@
+.shop-cover-bg {
+    background-image: url(/src/assets/images/bg22.jpg);
+}
+
+.title-hero-bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+    min-height: 50vh;
+}
+.title-hero-bg::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.page-title {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    left: 0;
+    z-index: 15;
+    -webkit-transform: translate(0%, -50%);
+    -moz-transform: translate(0%, -50%);
+    -ms-transform: translate(0%, -50%);
+    -o-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+}
+
+.page-title h1 {
+    font-size: 50px;
+    line-height: 50px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}

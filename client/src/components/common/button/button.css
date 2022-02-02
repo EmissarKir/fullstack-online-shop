@@ -1,0 +1,222 @@
+.btnCustom {
+    padding: 0.5rem 1.75rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1rem;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 1px;
+}
+
+.btnCustom + .btnCustom {
+    margin-left: 10px;
+}
+
+.btnCustom:focus,
+.btnCustom:focus:active {
+    outline: none;
+}
+.btnCustom:disabled,
+.btnCustom.disabled,
+fieldset:disabled {
+    pointer-events: none;
+    opacity: 0.65;
+}
+
+.btnCustom-danger {
+    color: #fff;
+    border-color: #d42e22;
+    background-color: #d42e22;
+}
+
+.btnCustom-danger:hover,
+.btnCustom-danger:active,
+.btnCustom-danger:focus {
+    background-color: #942017;
+    border-color: #942017;
+    color: #fff;
+}
+
+.btnCustom-success {
+    color: #fff;
+    border-color: #00c07f;
+    background-color: #00c07f;
+}
+
+.btnCustom-success:hover,
+.btnCustom-success:active,
+.btnCustom-success:focus {
+    background-color: #008658;
+    border-color: #008658;
+    color: #fff;
+}
+
+.btnCustom-warning {
+    color: #fff;
+    border-color: #fdd835;
+    background-color: #fdd835;
+}
+
+.btnCustom-warning:hover,
+.btnCustom-warning:active,
+.btnCustom-warning:focus {
+    background-color: #f9a825;
+    border-color: #f9a825;
+    color: #fff;
+}
+
+.btnCustom-primary {
+    color: #fff;
+    border-color: #0072ff;
+    background-color: #0072ff;
+}
+
+.btnCustom-primary:hover,
+.btnCustom-primary:active,
+.btnCustom-primary:focus {
+    background-color: #004fb2;
+    border-color: #004fb2;
+    color: #fff;
+}
+.btnCustom-secondary {
+    color: #fff;
+    border-color: #bcbcbc;
+    background-color: #bcbcbc;
+}
+
+.btnCustom-secondary:hover,
+.btnCustom-secondary:active,
+.btnCustom-secondary:focus {
+    background-color: #838383;
+    border-color: #838383;
+    color: #fff;
+}
+.btnCustom-info {
+    color: #fff;
+    border-color: #1dddf0;
+    background-color: #1dddf0;
+}
+
+.btnCustom-info:hover,
+.btnCustom-info:active,
+.btnCustom-info:focus {
+    background-color: #149aa8;
+    border-color: #149aa8;
+    color: #fff;
+}
+.btnCustom-light {
+    color: #212121;
+    border-color: #f3f6f4;
+    background-color: #f3f6f4;
+}
+
+.btnCustom-light:hover,
+.btnCustom-light:active,
+.btnCustom-light:focus {
+    background-color: #aaacaa;
+    border-color: #aaacaa;
+    color: #212121;
+}
+
+.btnCustom.btnCustom-sm,
+.btnCustom.btnCustom-group-sm {
+    padding: 0 1.5rem;
+    font-size: 0.625rem;
+    line-height: 2.125rem;
+}
+
+.btnCustom.btnCustom-lg,
+.btnCustom.btnCustom-group-lg {
+    padding: 0px 3.75rem;
+    font-size: 1.25rem;
+    letter-spacing: 0.125rem;
+    font-weight: 400;
+    line-height: 3.75rem;
+}
+
+.btnCustom-white {
+    color: #212121;
+    border-color: #fff;
+    background-color: #fff;
+}
+
+.btnCustom-white:hover,
+.btnCustom-white:active,
+.btnCustom-white:focus {
+    color: #fff;
+    border-color: #fff;
+    background-color: transparent;
+}
+
+.btnCustom-outline-white {
+    color: #fff;
+    border-color: #fff;
+    background-color: transparent;
+}
+
+.btnCustom-outline-white:hover,
+.btnCustom-outline-white:active,
+.btnCustom-outline-white:focus {
+    color: #212121;
+    border-color: #fff;
+    background-color: #fff;
+}
+
+.btnCustom-outline-blue {
+    color: var(--main-color);
+    border-color: var(--main-color);
+    background-color: transparent;
+}
+
+.btnCustom-outline-blue:hover,
+.btnCustom-outline-blue:active,
+.btnCustom-outline-blue:focus {
+    color: #fff;
+    border-color: var(--main-color);
+    background-color: var(--main-color);
+}
+
+.btnCustom-dark {
+    color: #fff;
+    border-color: #212121;
+    background-color: #212121;
+}
+
+.btnCustom-dark:hover,
+.btnCustom-dark:active,
+.btnCustom-dark:focus {
+    color: #212121;
+    border-color: #fff;
+    background-color: #fff;
+}
+
+.btnCustom-dark-outline {
+    color: #212121;
+    border-color: #212121;
+    background-color: transparent;
+}
+
+.btnCustom-dark-outline:hover,
+.btnCustom-dark-outline:active,
+.btnCustom-dark-outline:focus {
+    color: #fff;
+    border-color: #212121;
+    background-color: #212121;
+}
+
+.btnCustom-pink {
+    color: #fff;
+    border-color: #e91e63;
+    background-color: #e91e63;
+}
+
+.btnCustom-pink:hover,
+.btnCustom-pink:active,
+.btnCustom-pink:focus {
+    color: #fff;
+    border-color: #c2185b;
+    background-color: #c2185b;
+}

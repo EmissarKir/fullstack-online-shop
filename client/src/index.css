@@ -1,0 +1,89 @@
+:root {
+    --primary: #dc3545;
+    --secondary: #7b809a;
+    --dark: #344767;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+/*
+========================================================================
+   STYLES
+========================================================================
+*/
+
+.min-width-70 {
+    min-width: 70px;
+}
+
+/*
+========================================================================
+   CART
+========================================================================
+*/
+input {
+    background-color: inherit;
+}
+
+.quantityCart input[type="number"]::-webkit-outer-spin-button,
+.quantityCart input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* Firefox */
+.quantityCart input[type="number"] {
+    -moz-appearance: textfield;
+}
+.quantityCart input[type="number"]:focus {
+    outline: none;
+}
+.quantityCart {
+    cursor: pointer;
+    font-size: 20px;
+}
+.quantityCart i {
+    font-size: 25px;
+}
+
+.quantityCart input {
+    max-width: 60px;
+    max-height: 45px;
+    border: none;
+    text-align: center;
+}
+.categories .dropdown {
+    position: static;
+}
+.categories .dropdown-menu {
+    width: 100%;
+    left: 0;
+    padding: 20px 100px;
+    border-top: none;
+}
+.categories .nav-link {
+    color: #000;
+    font-size: 20px;
+}
+.categories .nav-link::before {
+    display: block;
+    content: "";
+    border-top: solid 1px #dc3545;
+}
+
+ul.menu-col {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
