@@ -1,5 +1,5 @@
-const mergeArrayOfObjects = require("../utils/mergeArrayOfObjects");
-const addNewProperties = require("../utils/addNewProperties");
+const { mergeArrayOfObjects } = require("../utils/mergeArrayOfObjects");
+const { addNewProperties } = require("../utils/addNewProperties");
 
 const Product = require("../models/Product");
 const Template = require("../models/Template");

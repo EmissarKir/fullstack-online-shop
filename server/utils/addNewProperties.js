@@ -24,4 +24,4 @@ function addNewProperties(array) {
   }));
   return paints;
 }
-module.exports = addNewProperties;
+module.exports = { addNewProperties };

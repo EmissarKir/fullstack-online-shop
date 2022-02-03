@@ -15,4 +15,4 @@ function mergeArrayOfObjects(arrTemplate, arrPaints) {
 
   return mergedPaints;
 }
-module.exports = mergeArrayOfObjects;
+module.exports = { mergeArrayOfObjects };

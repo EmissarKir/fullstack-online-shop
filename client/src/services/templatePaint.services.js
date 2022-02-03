@@ -5,7 +5,7 @@ const templatePaintEndPoint = `templates/`;
 const templatePaintService = {
     update: async (content) => {
         const { data } = await httpService.patch(
-            templatePaintEndPoint + content.templateId,
+            templatePaintEndPoint + content.templateId, // при MONGO заменить на _id
             content
         );
         return data;

@@ -8,7 +8,6 @@ const schema = new Schema(
     },
     templateId: {
       type: String,
-      required: true,
     },
     brand: {
       type: String,
@@ -37,6 +36,7 @@ const schema = new Schema(
     sortName: {
       type: String,
       required: true,
+      unique: true,
     },
     surface: {
       type: String,

@@ -40,7 +40,7 @@ const PaintsTable = ({ users, onSort, selectedSort, onEdit, onDelete }) => {
                     color="danger"
                     icon="delete"
                     end
-                    onClick={() => onDelete(paint.templateId)}
+                    onClick={() => onDelete(paint.templateId)} // при MONGO заменить на _id
                 >
                     Delete
                 </Button>
