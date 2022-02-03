@@ -28,7 +28,7 @@ const PaintsTable = ({ users, onSort, selectedSort, onEdit, onDelete }) => {
                     color="success"
                     icon="edit"
                     end
-                    onClick={() => onEdit(paint.templateId)}
+                    onClick={() => onEdit(paint._id)}
                 >
                     Edit
                 </Button>
@@ -40,7 +40,7 @@ const PaintsTable = ({ users, onSort, selectedSort, onEdit, onDelete }) => {
                     color="danger"
                     icon="delete"
                     end
-                    onClick={() => onDelete(paint.templateId)} // при MONGO заменить на _id
+                    onClick={() => onDelete(paint._id)} // при MONGO заменить на _id
                 >
                     Delete
                 </Button>

@@ -1,6 +1,6 @@
 import httpService from "./http.service";
 
-const userEndPoint = "users/";
+const userEndPoint = "user/";
 
 const usersService = {
     fetch: async () => {
@@ -8,10 +8,7 @@ const usersService = {
         return data;
     },
     create: async (payload) => {
-        const { data } = await httpService.put(
-            userEndPoint + payload._id,
-            payload
-        );
+        const { data } = await httpService.post(userEndPoint, payload);
         return data;
     }
 };

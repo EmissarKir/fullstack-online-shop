@@ -34,7 +34,7 @@ const templatesSlice = createSlice({
         },
         removeTemplateReceived: (state, action) => {
             state.entities = state.entities.filter(
-                (c) => c.templateId !== action.payload
+                (x) => x._id !== action.payload
             );
         }
     }
@@ -72,10 +72,7 @@ export const createTemplate = (payload) => async (dispatch) => {
     dispatch(createTemplateRequested());
     try {
         const newContent = { ...payload, templateId: uuidv4() };
-        const { content } = await templatePaintService.create(
-            newContent.templateId,
-            newContent
-        );
+        const { content } = await templatePaintService.create(newContent);
 
         dispatch(createTemplateReceived(content));
         history.push(`/admin/templates`);
@@ -98,7 +95,7 @@ export const removeTemplate = (templateId) => async (dispatch) => {
     dispatch(removeTemplateRequested());
     try {
         const { content } = await templatePaintService.delete(templateId);
-        if (content === null) {
+        if (!content) {
             dispatch(removeTemplateReceived(templateId));
         }
     } catch (error) {
@@ -112,7 +109,7 @@ export const getTemplatesLoadingStatus = () => (state) =>
 
 export const getTemplateById = (id) => (state) => {
     if (state.templates.entities) {
-        return state.templates.entities.find((item) => item.templateId === id);
+        return state.templates.entities.find((item) => item._id === id);
     }
 };
 

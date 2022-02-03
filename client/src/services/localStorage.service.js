@@ -6,14 +6,14 @@ const USERID_KEY = "user-local-id";
 export function setTokens({
     refreshToken,
     expiresIn = 3600,
-    idToken,
-    localId
+    accessToken,
+    userId
 }) {
     const expiresDate = new Date().getTime() + expiresIn * 1000;
-    localStorage.setItem(TOKEN_KEY, idToken);
+    localStorage.setItem(TOKEN_KEY, accessToken);
     localStorage.setItem(REFRESH_KEY, refreshToken);
     localStorage.setItem(EXPIRES_KEY, expiresDate);
-    localStorage.setItem(USERID_KEY, localId);
+    localStorage.setItem(USERID_KEY, userId);
 }
 export function getAccessToken() {
     return localStorage.getItem(TOKEN_KEY);

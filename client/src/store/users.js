@@ -63,52 +63,23 @@ const {
     usersReceived,
     usersRequestFailed,
     authRequestSuccess,
-    userCreated,
     userLoggedOut,
     authRequested
 } = actions;
 
 const authRequestFailed = createAction("users/authRequestFailed");
-const userCreateRequested = createAction("users/userCreateRequested");
-const userCreateRequestFailed = createAction("users/userCreateRequestFailed");
 
-export const signUp =
-    ({ email, password, ...rest }) =>
-    async (dispatch) => {
-        dispatch(authRequested());
-        try {
-            const data = await authService.register({ email, password });
-            localStorageService.setTokens(data);
-            dispatch(authRequestSuccess({ userId: data.localId }));
-            dispatch(
-                createUser({
-                    _id: data.localId,
-                    email,
-                    image: `https://avatars.dicebear.com/api/avataaars/${(
-                        Math.random() + 1
-                    )
-                        .toString(36)
-                        .substring(7)}.svg`,
-                    ...rest
-                })
-            );
-        } catch (error) {
-            dispatch(authRequestFailed(error.message));
-        }
-    };
-
-function createUser(payload) {
-    return async function (dispatch) {
-        dispatch(userCreateRequested());
-        try {
-            const { content } = await usersService.create(payload);
-            dispatch(userCreated(content));
-            history.push("/products");
-        } catch (error) {
-            dispatch(userCreateRequestFailed(error.message));
-        }
-    };
-}
+export const signUp = (payload) => async (dispatch) => {
+    dispatch(authRequested());
+    try {
+        const data = await authService.register(payload);
+        localStorageService.setTokens(data);
+        dispatch(authRequestSuccess({ userId: data.userId }));
+        history.push("/products");
+    } catch (error) {
+        dispatch(authRequestFailed(error.message));
+    }
+};
 
 export const login =
     ({ data, redirect }) =>
@@ -118,7 +89,7 @@ export const login =
         try {
             const content = await authService.login({ email, password });
             localStorageService.setTokens(content);
-            dispatch(authRequestSuccess({ userId: content.localId }));
+            dispatch(authRequestSuccess({ userId: content.userId }));
             history.push(redirect);
         } catch (error) {
             dispatch(authRequestFailed(error.message));

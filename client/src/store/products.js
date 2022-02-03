@@ -1,10 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import allPaintsService from "../services/allPaints.services";
-import templatePaintService from "../services/templatePaint.services";
-import {
-    addNewProperties,
-    mergeArrayOfObjects
-} from "../utils/mergeArrayOfObjects";
+import productService from "../services/product.service";
 import { pipe } from "../utils/withoutLodash";
 
 const productsSlice = createSlice({
@@ -37,20 +32,8 @@ const { productsRequested, productsReceived, productsRequestFailed } = actions;
 export const loadProductsList = () => async (dispatch) => {
     dispatch(productsRequested());
     try {
-        const result = await Promise.all([
-            allPaintsService.fetchAll(),
-            templatePaintService.fetchAll()
-        ]);
-        const [paints, templates] = result;
-        // 2 добавляем новые свойства для merge
-        const paintsModifed = addNewProperties(paints.content);
-        // 3 объединяем два массива по sortName
-        const arrayFull = mergeArrayOfObjects(templates.content, paintsModifed);
-        // 4 возвращаем только те объекты которые есть в продаже (в массиве paints)
-        const allProducts = arrayFull.filter(
-            (item) => item.paints.length !== 0
-        );
-        dispatch(productsReceived(allProducts));
+        const { content } = await productService.fetchAll();
+        dispatch(productsReceived(content));
     } catch (error) {
         dispatch(productsRequestFailed(error.message));
     }

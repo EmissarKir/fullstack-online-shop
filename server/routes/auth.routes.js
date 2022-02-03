@@ -2,9 +2,9 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 const User = require("../models/User");
+const { generateUserData } = require("../utils/generateUserData");
 const tokenService = require("../services/token.service");
 const router = express.Router({ mergeParams: true });
-const { generateUserData } = require("../utils/generateUserData");
 
 router.post("/signUp", [
   check("email", "Некорректный email").isEmail(),
@@ -20,9 +20,11 @@ router.post("/signUp", [
           },
         });
       }
+
       const { email, password } = req.body;
 
       const exitingUser = await User.findOne({ email });
+
       if (exitingUser) {
         return res.status(400).json({
           error: {
@@ -51,6 +53,7 @@ router.post("/signUp", [
     }
   },
 ]);
+
 router.post("/signInWithPassword", [
   check("email", "Email некорректный").normalizeEmail().isEmail(),
   check("password", "Пароль не может быть пустым").exists(),

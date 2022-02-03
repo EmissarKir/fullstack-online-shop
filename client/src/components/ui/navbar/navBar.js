@@ -14,7 +14,6 @@ const NavBar = () => {
     const [collapse, setCollapse] = useState(false);
 
     const countCartItems = useSelector(getCartCount());
-    console.log("countCartItems", countCartItems);
 
     const isLoggedIn = useSelector(getIsLoggedIn());
     const handleClick = () => setCollapse(!collapse);
