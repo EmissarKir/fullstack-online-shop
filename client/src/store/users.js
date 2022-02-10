@@ -39,8 +39,11 @@ const usersSLice = createSlice({
             state.isLoading = false;
         },
         authRequestSuccess: (state, action) => {
-            state.auth = { ...action.payload };
+            state.auth = action.payload;
             state.isLoggedIn = true;
+        },
+        authRequestFailed: (state, action) => {
+            state.error = action.payload;
         },
         userCreated: (state, action) => {
             state.entities.push(action.payload);
@@ -53,6 +56,13 @@ const usersSLice = createSlice({
         },
         authRequested: (state) => {
             state.error = null;
+        },
+        userUpdateSuccessed: (state, action) => {
+            state.entities[
+                state.entities.findIndex(
+                    (item) => item._id === action.payload._id
+                )
+            ] = action.payload;
         }
     }
 });
@@ -64,18 +74,19 @@ const {
     usersRequestFailed,
     authRequestSuccess,
     userLoggedOut,
-    authRequested
+    authRequested,
+    authRequestFailed,
+    userUpdateSuccessed
 } = actions;
-
-const authRequestFailed = createAction("users/authRequestFailed");
-
+const userUpdateFailed = createAction("users/userUpdateFailed");
+const userUpdateRequested = createAction("users/userUpdateRequested");
 export const signUp = (payload) => async (dispatch) => {
     dispatch(authRequested());
     try {
         const data = await authService.register(payload);
         localStorageService.setTokens(data);
         dispatch(authRequestSuccess({ userId: data.userId }));
-        history.push("/products");
+        history.push("/");
     } catch (error) {
         dispatch(authRequestFailed(error.message));
     }
@@ -112,6 +123,16 @@ export const logOut = () => (dispatch) => {
     history.push("/");
 };
 
+export const updateUser = (payload) => async (dispatch) => {
+    dispatch(userUpdateRequested());
+    try {
+        const { content } = await usersService.update(payload);
+        dispatch(userUpdateSuccessed(content));
+    } catch (error) {
+        dispatch(userUpdateFailed(error.message));
+    }
+};
+
 export const getIsLoggedIn = () => (state) => state.users.isLoggedIn;
 export const getDataStatus = () => (state) => state.users.dataLoaded;
 
@@ -123,5 +144,11 @@ export const getCurrentUserData = () => (state) => {
         : null;
 };
 export const getCurrentUserId = () => (state) => state.users.auth.userId;
+
+export const getUserById = (userId) => (state) => {
+    if (state.users.entities) {
+        return state.users.entities.find((item) => item._id === userId);
+    }
+};
 
 export default usersReducer;

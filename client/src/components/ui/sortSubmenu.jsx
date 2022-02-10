@@ -1,37 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-
-import { useDispatch } from "react-redux";
-import { switchSortBy } from "../../store/filters";
-import CheckBoxField from "../common/form/checkBoxField";
+import RadioField from "../common/form/radioField";
 
 const SortSubmenu = ({ submenu, show }) => {
-    const dispatch = useDispatch();
+    const [data, setData] = useState({ sort: "asc" });
 
-    const [data] = useState({ asc: true });
+    console.log("data", data);
 
-    const items = [];
-    for (let i = 0; i < submenu.length; i += 1) {
-        items.push(submenu.slice(i, i + 1));
-    }
+    const newArray = submenu.map((item) => ({ ...item, name: item.title }));
 
     const handleChange = (target) => {
-        // if ([target.name] === "desc") {
-        //     setData({ [target.name]: true });
-        // } else {
-        //     setData({ [target.name]: true });
-        // }
-        // setData((prevState) => ({
-        //   ...prevState,
-        //   [target.name]: target.value,
-        // }));
+        setData((prevState) => ({ ...prevState, [target.name]: target.value }));
     };
-
-    useEffect(() => {
-        if (data) {
-            dispatch(switchSortBy(data));
-        }
-    }, [data]);
 
     return (
         <ul
@@ -39,32 +19,14 @@ const SortSubmenu = ({ submenu, show }) => {
         >
             <li>
                 <div className="row">
-                    {items.map((val, i) => (
-                        <div key={i} className={"col-menu col-lg-2"}>
-                            <div className="content ">
-                                <ul className="menu-col">
-                                    {val.map((_, index) => {
-                                        const checkValue = val[index].value;
-                                        const checkTitle = val[index].title;
-                                        return (
-                                            <li key={index}>
-                                                <CheckBoxField
-                                                    name={checkValue}
-                                                    onChange={handleChange}
-                                                    value={
-                                                        data[checkValue] ||
-                                                        false
-                                                    }
-                                                >
-                                                    {checkTitle}
-                                                </CheckBoxField>
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
-                            </div>
-                        </div>
-                    ))}
+                    <div className="col-md-6 mx-auto">
+                        <RadioField
+                            options={newArray}
+                            value={data.sort || ""}
+                            onChange={handleChange}
+                            name="sort"
+                        />
+                    </div>
                 </div>
             </li>
         </ul>

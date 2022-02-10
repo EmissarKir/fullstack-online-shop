@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import RadioBtnField from "../../common/form/RadioField";
+import RadioBtnField from "../../common/form/radioBtnField";
 
 const RadioForm = ({ array, onChange, data }) => {
     if (array) {

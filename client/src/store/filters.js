@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import history from "../utils/history";
 
 const filterSlice = createSlice({
     name: "filter",
     initialState: {
         entities: {},
         sortBy: { asc: true },
+        search: "",
         isLoading: false,
         isEmpty: true,
         error: null
@@ -29,16 +31,37 @@ const filterSlice = createSlice({
         },
         sortSwitched: (state, action) => {
             state.sortBy = action.payload;
+        },
+        searchAdded: (state, action) => {
+            state.search = action.payload.search;
+        },
+        searchCleared: (state) => {
+            state.search = "";
         }
     }
 });
 
 const { actions, reducer: filterReducer } = filterSlice;
-const { filterAdded, filterRemoved, filterAllRemoved, sortSwitched } = actions;
+const {
+    filterAdded,
+    filterRemoved,
+    filterAllRemoved,
+    sortSwitched,
+    searchAdded,
+    searchCleared
+} = actions;
 
 export const addFilter = (payload) => async (dispatch) => {
     dispatch(filterAdded(payload));
 };
+export const addSearch = (payload) => async (dispatch) => {
+    dispatch(searchAdded(payload));
+    history.push("/products");
+};
+export const clearSearchStore = () => async (dispatch) => {
+    dispatch(searchCleared());
+};
+
 export const removeFilter = (payload) => (dispatch) => {
     dispatch(filterRemoved(payload));
 };
@@ -67,4 +90,8 @@ export const getActiveFilters = () => (state) => {
 export const getFilterStatus = () => (state) => {
     return state.filter.isEmpty;
 };
+export const getSearch = () => (state) => {
+    return state.filter.search;
+};
+
 export default filterReducer;

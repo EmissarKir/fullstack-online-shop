@@ -1,31 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const RadioField = ({ options, name, onChange, value, label }) => {
+const RadioBtnField = ({ options, name, onChange, value, label }) => {
     const handleChange = ({ target }) => {
         onChange({ name: target.name, value: target.value });
     };
-
     return (
-        <div>
-            {label && <label className="form-label">{label}</label>}
-            <div>
+        <div className="d-flex align-items-center  border-bottom my-1">
+            <label className="form-label min-width-70 ">{label}</label>
+            <div className="d-flex flex-wrap">
                 {options.map((option) => (
                     <div
-                        className="form-check form-check-inline"
-                        key={option.name + "_" + option.value}
+                        key={option.value}
+                        className="form-check my-2 mx-2 px-0"
                     >
                         <input
-                            className="form-check-input"
+                            className="btn-check"
                             type="radio"
                             name={name}
                             id={option.name + "_" + option.value}
-                            value={option.value}
                             checked={option.value === value}
+                            value={option.value}
                             onChange={handleChange}
                         />
                         <label
-                            className="form-check-label"
+                            className="btn btn-outline-secondary min-width-70"
                             htmlFor={option.name + "_" + option.value}
                         >
                             {option.name}
@@ -36,12 +35,13 @@ const RadioField = ({ options, name, onChange, value, label }) => {
         </div>
     );
 };
-RadioField.propTypes = {
-    label: PropTypes.string,
+
+RadioBtnField.propTypes = {
+    options: PropTypes.array,
     name: PropTypes.string,
-    value: PropTypes.string,
     onChange: PropTypes.func,
-    options: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
+    value: PropTypes.string,
+    label: PropTypes.string
 };
 
-export default RadioField;
+export default RadioBtnField;

@@ -15,14 +15,13 @@ const NavProfile = () => {
     return (
         <div className="dropdown " onClick={toggleMenu}>
             <div className="btn dropdown-toggle  d-flex align-items-center">
-                <i className="bi bi-person-check nav-link"></i>
-                <div className="text-white nav-link">{currentUser.name}</div>
+                <div className="text-white nav-link">
+                    <i className="bi bi-person-check me-2"></i>
+                    {currentUser.name}
+                </div>
             </div>
             <div className={`w-100 dropdown-menu ` + (isOpen ? "show" : "")}>
-                <Link
-                    to={`/users/${currentUser._id}`}
-                    className="dropdown-item"
-                >
+                <Link to={`/user/${currentUser._id}`} className="dropdown-item">
                     Profile
                 </Link>
                 <Link to="/logout" className="dropdown-item">

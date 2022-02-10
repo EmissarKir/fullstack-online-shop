@@ -10,6 +10,8 @@ import ProductImportant from "../../ui/productImportant";
 import { getProductById } from "../../../store/products";
 
 import { addItemsCart } from "../../../store/cartItems";
+import Reviews from "../../ui/reviews";
+import { getReviewsById } from "../../../store/reviews";
 
 // получаем минимальную фасовку товара
 const getInitialStatePrice = (arr) => {
@@ -23,8 +25,10 @@ const getCurrentPaintObj = (id, array) =>
 const ProductPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { paintId } = useParams();
-    const product = useSelector(getProductById(paintId));
+    const { category } = useParams();
+    const product = useSelector(getProductById(category));
+
+    const reviewsProduct = useSelector(getReviewsById(category));
 
     const [quantity, setQuantity] = useState(1);
     const [isAddCart, setAddCart] = useState(false);
@@ -32,6 +36,15 @@ const ProductPage = () => {
     const [currentId, setCurrentId] = useState(() =>
         getInitialStatePrice(product.paints)
     );
+    const numberOfRatings = reviewsProduct.length;
+
+    const averageRating =
+        numberOfRatings > 0
+            ? Math.round(
+                  reviewsProduct.reduce((total, curr) => total + curr.rate, 0) /
+                      numberOfRatings
+              )
+            : 0;
 
     const handleChange = (target) => {
         setCurrentId((prevState) => ({
@@ -74,12 +87,15 @@ const ProductPage = () => {
                         onAddPaintCart={handleAddPaintCart}
                         redirectToCart={redirectToCart}
                         isAddCart={isAddCart}
+                        numberOfRatings={numberOfRatings}
+                        averageRating={averageRating}
                     />
                     <ProductAdvantages product={product} />
                     <ProductDetails product={product} />
                     {product.important && (
                         <ProductImportant product={product} />
                     )}
+                    <Reviews />
                 </div>
             ) : null}
         </>

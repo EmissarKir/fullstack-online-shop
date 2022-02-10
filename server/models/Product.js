@@ -71,6 +71,16 @@ const schema = new Schema(
     wos: {
       type: String,
     },
+    lowestPrice: {
+      type: Number,
+    },
+    reviews: {
+      type: [
+        {
+          type: Object,
+        },
+      ],
+    },
   },
   {
     timestamps: true,

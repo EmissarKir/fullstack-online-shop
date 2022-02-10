@@ -4,13 +4,15 @@ import filterReducer from "./filters";
 import templatesReducer from "./templates";
 import productsReducer from "./products";
 import usersReducer from "./users";
+import reviewsReducer from "./reviews";
 
 const rootReducer = combineReducers({
     users: usersReducer,
     products: productsReducer,
     templates: templatesReducer,
     itemsCart: cartItemsReducer,
-    filter: filterReducer
+    filter: filterReducer,
+    reviews: reviewsReducer
 });
 
 function createStore() {

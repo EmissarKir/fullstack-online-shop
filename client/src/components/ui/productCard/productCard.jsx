@@ -6,13 +6,18 @@ import { useHistory } from "react-router-dom";
 import "./productCard.css";
 
 import imagePlaceholder from "../../../assets/images/img-placehold.jpg";
+import ItemRate from "../../common/itemRate";
 
 const ProductCard = ({ item }) => {
     const history = useHistory();
 
-    const lowestPrice = item.paints
-        .map((item) => item.price)
-        .sort((a, b) => a - b)[0];
+    const averageRating =
+        item.reviews.length > 0
+            ? Math.round(
+                  item.reviews.reduce((total, curr) => total + curr.rate, 0) /
+                      item.reviews.length
+              )
+            : 0;
 
     const handelClick = (item) => history.push(`/products/${item.templateId}`);
 
@@ -56,9 +61,10 @@ const ProductCard = ({ item }) => {
                 </div>
                 <div className="card-body d-flex flex-column">
                     <h5 className="card-title text-center">{item.sortName}</h5>
-                    <p className="card-text"></p>
-                    <div className="fw-bold fs-5 mt-auto align-self-start">
-                        {`от ${lowestPrice} ₽`}
+
+                    <div className="mt-auto align-self-start">
+                        <ItemRate rate={averageRating} mode="single" />
+                        <p className="fw-bold fs-5 m-0">{`от ${item.lowestPrice} ₽`}</p>
                     </div>
                 </div>
             </div>

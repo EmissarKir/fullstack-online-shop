@@ -1,0 +1,6 @@
+.star-rating.bi {
+    font-size: 32px;
+}
+.star-rating input[type="radio"] {
+    display: none;
+}

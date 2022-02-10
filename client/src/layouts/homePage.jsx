@@ -1,12 +1,11 @@
 import React from "react";
-import Button from "../components/common/button";
 import PageTitleShop from "../components/ui/pageTitleShop";
 
 const HomePage = () => {
     return (
         <>
             <PageTitleShop />
-            <div className="row">
+            {/* <div className="row">
                 <div className="col-md-12">
                     <h1>Home Page</h1>
                     <Button color="danger" icon="cart" end>
@@ -37,7 +36,7 @@ const HomePage = () => {
                         <button className="btn btn-primary">Bootsyrap</button>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     );
 };

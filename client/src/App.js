@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
 
-import NavBar from "./components/ui/navbar/navBar";
+import NavBar from "./components/ui/navbar/navBar.jsx";
 import Breadcrumb from "./components/ui/breadcrumbs";
 import ProtectedRoute from "./components/common/protectedRoute";
 
 import routes from "./routes";
-
-import { getIsLoggedIn, loadUsers } from "./store/users";
-import { loadProductsList } from "./store/products";
+import Search from "./components/ui/search.jsx";
+import { getIsLoggedIn, loadUsers } from "./store/users.js";
+import { useDispatch, useSelector } from "react-redux";
 
 const getRoutes = (routes) => {
     return routes.map((prop, key) => {
@@ -34,16 +33,23 @@ function App() {
     const isLoggedIn = useSelector(getIsLoggedIn());
 
     useEffect(() => {
-        dispatch(loadProductsList());
-        if (isLoggedIn) {
-            dispatch(loadUsers());
-        }
+        dispatch(loadUsers());
     }, [isLoggedIn]);
 
     return (
         <>
             <NavBar />
-            <Breadcrumb />
+            <div className="container">
+                <div className="row d-flex align-items-baseline justify-content-between">
+                    <div className="col-md-6">
+                        <Breadcrumb />
+                    </div>
+                    <div className="col-md-6">
+                        <Search />
+                    </div>
+                </div>
+            </div>
+
             <Switch>
                 <Switch>{getRoutes(routes)}</Switch>
             </Switch>

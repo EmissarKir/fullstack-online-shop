@@ -19,9 +19,11 @@ import {
 import useForm from "../../hooks/useForm";
 
 const TemplateForm = ({ data, onSubmit }) => {
+    const validatorConfig = {};
     const { form, handleChange, handleSubmit, errors, isValid } = useForm(
         data,
-        onSubmit
+        onSubmit,
+        validatorConfig
     );
     const history = useHistory();
 

@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import imgPlaceHold from "../../assets/images/img-placehold.jpg";
 import Quantity from "../common/quantity";
 import RadioForm from "../ui/radioForm/radioForm";
+import ItemRate from "../common/itemRate";
+import { getNoun } from "../../utils/getNoun";
 
 const ProductHeader = ({
     product,
@@ -14,8 +16,11 @@ const ProductHeader = ({
     setQuantity,
     onAddPaintCart,
     redirectToCart,
-    isAddCart
+    isAddCart,
+    averageRating,
+    numberOfRatings
 }) => {
+    const str = getNoun(numberOfRatings, "отзыв", "отзыва", "отзывов");
     return (
         <div className="row my-3">
             <div className="col-md-6">
@@ -34,10 +39,15 @@ const ProductHeader = ({
                 </div>
                 <div className="row">
                     <div className="col-lg-6">
-                        <div className="d-flex justify-content-between font-italic">
-                            <p>
-                                <small>код товара</small> &nbsp;{product.code}
-                            </p>
+                        <div className="d-flex flex-row">
+                            <ItemRate rate={averageRating} />
+                            {numberOfRatings > 0 ? (
+                                <span className="ms-2">
+                                    {`${numberOfRatings} ${str}`}
+                                </span>
+                            ) : (
+                                <span className="ms-2">отзывов нет</span>
+                            )}
                         </div>
                     </div>
                     {product.countryOfOrigin && (
@@ -132,6 +142,8 @@ ProductHeader.propTypes = {
     setQuantity: PropTypes.func,
     onAddPaintCart: PropTypes.func,
     redirectToCart: PropTypes.func,
-    isAddCart: PropTypes.bool
+    isAddCart: PropTypes.bool,
+    averageRating: PropTypes.number,
+    numberOfRatings: PropTypes.number
 };
 export default ProductHeader;

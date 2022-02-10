@@ -29,13 +29,22 @@ const productsSlice = createSlice({
 const { actions, reducer: productsReducer } = productsSlice;
 const { productsRequested, productsReceived, productsRequestFailed } = actions;
 
-export const loadProductsList = () => async (dispatch) => {
+export const loadProductsList = (category) => async (dispatch) => {
     dispatch(productsRequested());
-    try {
-        const { content } = await productService.fetchAll();
-        dispatch(productsReceived(content));
-    } catch (error) {
-        dispatch(productsRequestFailed(error.message));
+    if (category) {
+        try {
+            const { content } = await productService.fetchByCategory(category);
+            dispatch(productsReceived(content));
+        } catch (error) {
+            dispatch(productsRequestFailed(error.message));
+        }
+    } else {
+        try {
+            const { content } = await productService.fetchAll();
+            dispatch(productsReceived(content));
+        } catch (error) {
+            dispatch(productsRequestFailed(error.message));
+        }
     }
 };
 
@@ -45,6 +54,7 @@ export const getProducts = () => (state) => state.products.entities;
 export const getFiltredProducts = () => (state) => {
     const filters = state.filter.entities;
     const allProducts = state.products.entities;
+    const search = state.filter.search;
     const createArray = (obj) => {
         return obj && Object.keys(obj).filter((key) => !!obj[key]);
     };
@@ -58,6 +68,14 @@ export const getFiltredProducts = () => (state) => {
             ? initialArray.filter((item) => arrayValues.includes(item[value]))
             : initialArray;
     }
+    function searchByValue(initialArray, value, str) {
+        return str
+            ? initialArray.filter((item) =>
+                  item[value].toLowerCase().includes(str.toLowerCase().trim())
+              )
+            : initialArray;
+    }
+
     // фильтр по брэнду
     function filterByBrand(array) {
         return filterbyValue(array, "brand", filters);
@@ -66,8 +84,12 @@ export const getFiltredProducts = () => (state) => {
     function filterByUse(array) {
         return filterbyValue(array, "FIoEU", filters);
     }
+    // фильтр по использованию полю Search
+    function filterBySearchField(array) {
+        return searchByValue(array, "sortName", search);
+    }
 
-    return pipe(filterByBrand, filterByUse)(allProducts);
+    return pipe(filterByBrand, filterByUse, filterBySearchField)(allProducts);
 };
 
 export const getProductsLoadingStatus = () => (state) =>
@@ -99,7 +121,7 @@ export const getDataStatus = () => (state) => state.products.dataLoaded;
 export const getBrandList = () => (state) => {
     if (state.products.entities) {
         const arr = state.products.entities.map((item) => item.brand);
-        return Array.from(new Set(arr));
+        return [...new Set(arr)];
     }
 };
 

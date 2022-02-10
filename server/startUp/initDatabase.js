@@ -1,27 +1,19 @@
-const { mergeArrayOfObjects } = require("../utils/mergeArrayOfObjects");
-const { addNewProperties } = require("../utils/addNewProperties");
-
 const Product = require("../models/Product");
 const Template = require("../models/Template");
 
 const paintsMock = require("../mock/paints.json");
 const templatesMock = require("../mock/templates.json");
-
-function createProducts(paints, templates) {
-  const paintsModifed = addNewProperties(paints);
-  const arrayFull = mergeArrayOfObjects(templates, paintsModifed);
-  return arrayFull.filter((item) => item.paints.length !== 0);
-}
+const { createProducts } = require("../utils/createProducts");
 
 module.exports = async () => {
   const templates = await Template.find();
-  if (templates.length !== templatesMock.length) {
+  if (!templates) {
     await createInitialEntity(Template, templatesMock);
   }
 
   const productsMock = createProducts(paintsMock, templatesMock);
   const products = await Product.find();
-  if (products.length !== productsMock.length) {
+  if (!products) {
     await createInitialEntity(Product, productsMock);
   }
 };

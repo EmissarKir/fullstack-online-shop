@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { getBrandList } from "../../store/products";
 
 import FilterItem from "./filterItem";
 
@@ -66,10 +68,20 @@ const items = [
 ];
 
 const ProductsFilter = () => {
+    const brands = useSelector(getBrandList());
+    const itemsWithActuallyBrands = items.map((item) =>
+        item.value === "brand"
+            ? {
+                  ...item,
+                  submenu: item.submenu.filter((x) => brands.includes(x.value))
+              }
+            : item
+    );
+
     return (
         <div className="container ">
             <ul className="categories d-flex justify-content-center nav mb-5">
-                {items.map((item) => (
+                {itemsWithActuallyBrands.map((item) => (
                     <FilterItem item={item} key={item.id} />
                 ))}
             </ul>

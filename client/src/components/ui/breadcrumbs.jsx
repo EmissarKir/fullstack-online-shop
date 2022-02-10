@@ -8,7 +8,7 @@ function Breadcrumb() {
 
     return (
         <div className="container">
-            <nav className="row mt-4 ms-1">
+            <nav className="row mt-4">
                 <ol className="breadcrumb">
                     {crumbs.length > 0 ? (
                         <li className="breadcrumb-item">

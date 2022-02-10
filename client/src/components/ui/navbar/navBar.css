@@ -1,19 +1,11 @@
 .navbar {
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.15);
 }
-
-/* .navbar-brand .bi {
-  font-size: 3rem;
-} */
-
-/* .navbar-toggler .bi {
-  width: 1.5rem;
-  height: 1.5rem;
-} */
-
 nav .nav-link {
-    color: #fff !important;
-    font-size: 1.2rem;
+    color: #f5f5f5 !important;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 .nav-link:hover,
 .nav-link:focus,

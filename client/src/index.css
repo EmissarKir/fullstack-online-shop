@@ -1,5 +1,5 @@
 :root {
-    --primary: #dc3545;
+    --primary: #ff5252;
     --secondary: #7b809a;
     --dark: #344767;
 }
@@ -79,7 +79,7 @@ input {
 .categories .nav-link::before {
     display: block;
     content: "";
-    border-top: solid 1px #dc3545;
+    border-top: solid 1px var(--primary);
 }
 
 ul.menu-col {

@@ -16,18 +16,18 @@ const NavBar = () => {
     const countCartItems = useSelector(getCartCount());
 
     const isLoggedIn = useSelector(getIsLoggedIn());
-    const handleClick = () => setCollapse(!collapse);
+    const toggleCollapse = () => setCollapse(!collapse);
     const closeMobileMenu = () => {
         setCollapse(false);
     };
 
     return (
-        <nav className="navbar navbar-expand-md  navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">
                 <Link to="/" className="navbar-brand" onClick={closeMobileMenu}>
                     <i className="bi bi-github me-2 text-danger"></i>My Paints
                 </Link>
-                <button className="navbar-toggler" onClick={handleClick}>
+                <button className="navbar-toggler" onClick={toggleCollapse}>
                     <i
                         className={
                             collapse ? "bi bi-x-lg" : "navbar-toggler-icon"
