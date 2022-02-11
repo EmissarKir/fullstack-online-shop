@@ -17,10 +17,10 @@ const ProductHeader = ({
     onAddPaintCart,
     redirectToCart,
     isAddCart,
-    averageRating,
-    numberOfRatings
+    countReviewsByProduct,
+    averageRateByProduct
 }) => {
-    const str = getNoun(numberOfRatings, "отзыв", "отзыва", "отзывов");
+    const str = getNoun(countReviewsByProduct, "отзыв", "отзыва", "отзывов");
     return (
         <div className="row my-3">
             <div className="col-md-6">
@@ -40,10 +40,10 @@ const ProductHeader = ({
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="d-flex flex-row">
-                            <ItemRate rate={averageRating} />
-                            {numberOfRatings > 0 ? (
+                            <ItemRate rate={averageRateByProduct} />
+                            {countReviewsByProduct > 0 ? (
                                 <span className="ms-2">
-                                    {`${numberOfRatings} ${str}`}
+                                    {`${countReviewsByProduct} ${str}`}
                                 </span>
                             ) : (
                                 <span className="ms-2">отзывов нет</span>
@@ -143,7 +143,7 @@ ProductHeader.propTypes = {
     onAddPaintCart: PropTypes.func,
     redirectToCart: PropTypes.func,
     isAddCart: PropTypes.bool,
-    averageRating: PropTypes.number,
-    numberOfRatings: PropTypes.number
+    countReviewsByProduct: PropTypes.number,
+    averageRateByProduct: PropTypes.number
 };
 export default ProductHeader;

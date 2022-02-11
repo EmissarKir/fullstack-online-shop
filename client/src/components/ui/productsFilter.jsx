@@ -61,8 +61,8 @@ const items = [
         value: "sort",
         id: 3,
         submenu: [
-            { title: "По цене (по убыванию)", id: 1, value: "asc" },
-            { title: "По цене (по возрастанию)", id: 2, value: "desc" }
+            { title: "По цене (по убыванию)", id: 1, value: "desc" },
+            { title: "По цене (по возрастанию)", id: 2, value: "asc" }
         ]
     }
 ];

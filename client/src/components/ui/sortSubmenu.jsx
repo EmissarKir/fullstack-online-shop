@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import RadioField from "../common/form/radioField";
+import { useDispatch } from "react-redux";
+import { switchSortBy } from "../../store/filters";
 
 const SortSubmenu = ({ submenu, show }) => {
+    const dispatch = useDispatch();
     const [data, setData] = useState({ sort: "asc" });
 
-    console.log("data", data);
+    useEffect(() => {
+        dispatch(switchSortBy(data));
+    }, [data]);
 
     const newArray = submenu.map((item) => ({ ...item, name: item.title }));
 

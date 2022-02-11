@@ -5,7 +5,7 @@ const filterSlice = createSlice({
     name: "filter",
     initialState: {
         entities: {},
-        sortBy: { asc: true },
+        sortBy: { sort: "asc" },
         search: "",
         isLoading: false,
         isEmpty: true,
