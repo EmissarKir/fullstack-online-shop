@@ -11,7 +11,7 @@ import { getProductById } from "../../../store/products";
 
 import { addItemsCart } from "../../../store/cartItems";
 import Reviews from "../../ui/reviews";
-import { getReviewsById } from "../../../store/reviews";
+import { getAverageRate } from "../../../store/reviews";
 
 // получаем минимальную фасовку товара
 const getInitialStatePrice = (arr) => {
@@ -28,7 +28,13 @@ const ProductPage = () => {
     const { category } = useParams();
     const product = useSelector(getProductById(category));
 
-    const reviewsProduct = useSelector(getReviewsById(category));
+    const reviewsObj = useSelector(getAverageRate());
+    const countReviewsByProduct = reviewsObj[category]
+        ? reviewsObj[category].length
+        : 0;
+    const averageRateByProduct = reviewsObj[category]
+        ? reviewsObj[category].averageRate
+        : 0;
 
     const [quantity, setQuantity] = useState(1);
     const [isAddCart, setAddCart] = useState(false);
@@ -36,15 +42,6 @@ const ProductPage = () => {
     const [currentId, setCurrentId] = useState(() =>
         getInitialStatePrice(product.paints)
     );
-    const numberOfRatings = reviewsProduct.length;
-
-    const averageRating =
-        numberOfRatings > 0
-            ? Math.round(
-                  reviewsProduct.reduce((total, curr) => total + curr.rate, 0) /
-                      numberOfRatings
-              )
-            : 0;
 
     const handleChange = (target) => {
         setCurrentId((prevState) => ({
@@ -87,8 +84,8 @@ const ProductPage = () => {
                         onAddPaintCart={handleAddPaintCart}
                         redirectToCart={redirectToCart}
                         isAddCart={isAddCart}
-                        numberOfRatings={numberOfRatings}
-                        averageRating={averageRating}
+                        averageRateByProduct={averageRateByProduct}
+                        countReviewsByProduct={countReviewsByProduct}
                     />
                     <ProductAdvantages product={product} />
                     <ProductDetails product={product} />

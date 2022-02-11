@@ -1,9 +1,6 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
 import reviewsService from "../services/reviews.service";
 
-// import templatePaintService from "../services/templatePaint.services";
-// import history from "../utils/history";
-
 const reviewsSlice = createSlice({
     name: "reviews",
     initialState: {
@@ -39,10 +36,10 @@ const {
 
 const createReviewRequested = createAction("reviews/createReviewRequested");
 
-export const loadReviewsList = (templateId) => async (dispatch) => {
+export const loadReviewsList = () => async (dispatch) => {
     dispatch(reviewsRequested());
     try {
-        const { content } = await reviewsService.getReviewsById(templateId);
+        const { content } = await reviewsService.fetchAll();
         dispatch(reviewsReceived(content));
     } catch (error) {
         dispatch(reviewsRequestFailed(error.message));
@@ -65,6 +62,28 @@ export const getReviewsLoadingStatus = () => (state) => state.reviews.isLoading;
 export const getReviewsById = (id) => (state) => {
     if (state.reviews.entities) {
         return state.reviews.entities.filter((item) => item.templateId === id);
+    }
+};
+
+export const getAverageRate = () => (state) => {
+    if (state.reviews.entities) {
+        const objReviews = state.reviews.entities.reduce((obj, curr) => {
+            if (!obj[curr.templateId]) {
+                obj[curr.templateId] = [];
+            }
+            obj[curr.templateId].push(curr.rate);
+            return obj;
+        }, {});
+        const newObj = {};
+        Object.keys(objReviews).forEach((key) => {
+            const length = objReviews[key].length;
+            const averageRate = Math.round(
+                objReviews[key].reduce((total, curr) => total + curr, 0) /
+                    length
+            );
+            return (newObj[key] = { averageRate, length });
+        });
+        return newObj;
     }
 };
 

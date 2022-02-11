@@ -1,26 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import {
-    getReviews,
-    getReviewsLoadingStatus,
-    loadReviewsList
-} from "../../store/reviews";
+import { getReviewsById, getReviewsLoadingStatus } from "../../store/reviews";
 import { getIsLoggedIn } from "../../store/users";
 import ReviewsList, { AddReview } from "../common/reviews";
 
 const Reviews = () => {
-    const dispatch = useDispatch();
     const [showAddField, setShowAddField] = useState(false);
     const { category } = useParams();
     const isLoggedIn = useSelector(getIsLoggedIn());
     const isLoading = useSelector(getReviewsLoadingStatus());
 
-    const reviews = useSelector(getReviews());
-
-    useEffect(() => {
-        dispatch(loadReviewsList(category));
-    }, [category]);
+    const reviews = useSelector(getReviewsById(category));
 
     const toggleAddCommentField = () => {
         setShowAddField(!showAddField);

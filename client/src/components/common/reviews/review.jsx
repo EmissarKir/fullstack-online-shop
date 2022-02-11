@@ -8,7 +8,7 @@ import { timeConverter } from "../../../utils/timeConverter";
 
 const Review = ({ review, created_at: created, userId, rate }) => {
     const user = useSelector(getUserById(userId));
-    console.log("user", user);
+
     return (
         <li className="list-group-item">
             <div className="row">

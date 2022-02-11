@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import productService from "../services/product.service";
 import { pipe } from "../utils/withoutLodash";
+import _ from "lodash";
 
 const productsSlice = createSlice({
     name: "products",
@@ -55,6 +56,7 @@ export const getFiltredProducts = () => (state) => {
     const filters = state.filter.entities;
     const allProducts = state.products.entities;
     const search = state.filter.search;
+    const sort = state.filter.sortBy.sort;
     const createArray = (obj) => {
         return obj && Object.keys(obj).filter((key) => !!obj[key]);
     };
@@ -88,8 +90,17 @@ export const getFiltredProducts = () => (state) => {
     function filterBySearchField(array) {
         return searchByValue(array, "sortName", search);
     }
+    // фильтр по использованию полю Search
+    function sortProductsByPrice(array) {
+        return _.orderBy(array, ["lowestPrice"], [sort]);
+    }
 
-    return pipe(filterByBrand, filterByUse, filterBySearchField)(allProducts);
+    return pipe(
+        sortProductsByPrice,
+        filterByBrand,
+        filterByUse,
+        filterBySearchField
+    )(allProducts);
 };
 
 export const getProductsLoadingStatus = () => (state) =>

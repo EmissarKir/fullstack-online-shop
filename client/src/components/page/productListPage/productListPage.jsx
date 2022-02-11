@@ -6,8 +6,11 @@ import ProductsFilter from "../../ui/productsFilter";
 import ActiveFilters from "../../ui/activeFilters";
 import Pagination from "../../common/pagination";
 import { usePagination } from "../../../hooks/usePagination";
+import { useSelector } from "react-redux";
+import { getAverageRate } from "../../../store/reviews";
 
 const ProductListPage = ({ items }) => {
+    const reviewsObj = useSelector(getAverageRate());
     const pageSize = 20;
 
     const { dataCrop, currentPage, pages, handlePageChange } = usePagination({
@@ -24,9 +27,19 @@ const ProductListPage = ({ items }) => {
                 </div>
             </div>
             <div className="row">
-                {dataCrop.map((item) => (
-                    <ProductCard key={item.templateId} item={item} />
-                ))}
+                {dataCrop.map((item) => {
+                    const rate = reviewsObj[item.templateId]
+                        ? reviewsObj[item.templateId].averageRate
+                        : 0;
+
+                    return (
+                        <ProductCard
+                            key={item.templateId}
+                            item={item}
+                            rate={rate}
+                        />
+                    );
+                })}
             </div>
             <div className="d-flex justify-content-center">
                 <Pagination

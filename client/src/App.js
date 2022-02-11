@@ -9,6 +9,7 @@ import routes from "./routes";
 import Search from "./components/ui/search.jsx";
 import { getIsLoggedIn, loadUsers } from "./store/users.js";
 import { useDispatch, useSelector } from "react-redux";
+import { loadReviewsList } from "./store/reviews.js";
 
 const getRoutes = (routes) => {
     return routes.map((prop, key) => {
@@ -33,6 +34,7 @@ function App() {
     const isLoggedIn = useSelector(getIsLoggedIn());
 
     useEffect(() => {
+        dispatch(loadReviewsList());
         dispatch(loadUsers());
     }, [isLoggedIn]);
 

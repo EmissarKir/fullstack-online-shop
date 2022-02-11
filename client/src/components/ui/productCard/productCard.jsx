@@ -8,16 +8,8 @@ import "./productCard.css";
 import imagePlaceholder from "../../../assets/images/img-placehold.jpg";
 import ItemRate from "../../common/itemRate";
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({ item, rate }) => {
     const history = useHistory();
-
-    const averageRating =
-        item.reviews.length > 0
-            ? Math.round(
-                  item.reviews.reduce((total, curr) => total + curr.rate, 0) /
-                      item.reviews.length
-              )
-            : 0;
 
     const handelClick = (item) => history.push(`/products/${item.templateId}`);
 
@@ -63,7 +55,7 @@ const ProductCard = ({ item }) => {
                     <h5 className="card-title text-center">{item.sortName}</h5>
 
                     <div className="mt-auto align-self-start">
-                        <ItemRate rate={averageRating} mode="single" />
+                        <ItemRate rate={rate} mode="single" />
                         <p className="fw-bold fs-5 m-0">{`от ${item.lowestPrice} ₽`}</p>
                     </div>
                 </div>
@@ -72,6 +64,7 @@ const ProductCard = ({ item }) => {
     );
 };
 ProductCard.propTypes = {
-    item: PropTypes.object
+    item: PropTypes.object,
+    rate: PropTypes.number
 };
 export default ProductCard;
