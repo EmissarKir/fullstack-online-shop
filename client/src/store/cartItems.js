@@ -20,14 +20,6 @@ const cartItemsSlice = createSlice({
             state.isLoading = false;
         },
         cartItemsAdded: (state, action) => {
-            // const { paintId, quantity } = action.payload;
-            // if (!state.entities[paintId]) {
-            //   state.entities[paintId] = {};
-            // }
-            // const newQuantity = state.entities[paintId].quantity
-            //   ? state.entities[paintId].quantity + quantity
-            //   : quantity;
-            // state.entities[paintId] = { ...action.payload, quantity: newQuantity };
             const index = state.entities.findIndex((x) => {
                 return x.paintId === action.payload.paintId;
             });

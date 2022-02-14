@@ -17,9 +17,7 @@ const StarRating = ({ rate, onRating }) => {
                             value={rateValue}
                             onClick={() => onRating(rateValue)}
                         />
-                        <i
-                            className={`star-rating bi bi-star-fill ${color}`}
-                        ></i>
+                        <i className={`bi bi-star-fill ${color}`}></i>
                     </label>
                 );
             })}
@@ -27,7 +25,7 @@ const StarRating = ({ rate, onRating }) => {
     );
 };
 StarRating.propTypes = {
-    rate: PropTypes.number,
+    rate: PropTypes.number.isRequired,
     onRating: PropTypes.func
 };
 export default React.memo(StarRating);

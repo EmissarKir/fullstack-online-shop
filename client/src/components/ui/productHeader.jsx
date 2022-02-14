@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import imgPlaceHold from "../../assets/images/img-placehold.jpg";
-import Quantity from "../common/quantity";
 import RadioForm from "../ui/radioForm/radioForm";
 import ItemRate from "../common/itemRate";
 import { getNoun } from "../../utils/getNoun";
+import QuantityProductPage from "./quantityProductPage";
 
 const ProductHeader = ({
     product,
@@ -74,7 +74,7 @@ const ProductHeader = ({
                             <div className="me-lg-2 mb-lg-0 mb-2">
                                 Количество
                             </div>
-                            <Quantity
+                            <QuantityProductPage
                                 quantity={quantity}
                                 setQuantity={setQuantity}
                             />

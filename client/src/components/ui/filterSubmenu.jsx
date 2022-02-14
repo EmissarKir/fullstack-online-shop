@@ -47,9 +47,9 @@ const FilterSubmenu = ({ submenu, show, parent }) => {
                     {items.map((val, i) => (
                         <div
                             key={i}
-                            className={"col-menu col-lg-3 col-md-4 col-sm-6"}
+                            className="col-menu col-lg-3 col-md-4 col-sm-6"
                         >
-                            <div className="content ">
+                            <div className="content">
                                 <ul className="menu-col">
                                     {val.map((_, index) => {
                                         const checkNameValue = val[index].value;

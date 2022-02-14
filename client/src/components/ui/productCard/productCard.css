@@ -1,15 +1,18 @@
 .product-wrap {
     position: relative;
     overflow: hidden;
+    height: 65%;
 }
-.product-img img {
+.product-wrap img {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 .product-wrap .product-caption {
     width: 100%;
     position: absolute;
     z-index: 2;
-    height: 100%;
+    height: 95%;
     opacity: 0;
     top: 0;
     background-color: rgba(255, 255, 255, 0.9);
@@ -18,6 +21,7 @@
 }
 .product-card {
     cursor: pointer;
+    width: 100%;
 }
 .product-card:hover .product-caption {
     opacity: 1;

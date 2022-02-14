@@ -14,7 +14,7 @@ const ProductCard = ({ item, rate }) => {
     const handelClick = (item) => history.push(`/products/${item.templateId}`);
 
     return (
-        <div className="col-xl-3 col-lg-4 col-md-6 d-flex align-items-stretch">
+        <div className="col-xl-3  col-md-4 col-sm-6 d-flex align-items-stretch">
             <div
                 className="product-card card mb-3 shadow"
                 onClick={() => handelClick(item)}
@@ -22,7 +22,7 @@ const ProductCard = ({ item, rate }) => {
                 <div className="product-wrap">
                     <img
                         src={item.img || imagePlaceholder}
-                        className="card-img-top p-4"
+                        className="p-4"
                         alt="product-card"
                     />
                     <div className="product-caption">
@@ -52,11 +52,13 @@ const ProductCard = ({ item, rate }) => {
                     </div>
                 </div>
                 <div className="card-body d-flex flex-column">
-                    <h5 className="card-title text-center">{item.sortName}</h5>
+                    <h6 className="card-title text-center">{item.sortName}</h6>
 
-                    <div className="mt-auto align-self-start">
-                        <ItemRate rate={rate} mode="single" />
-                        <p className="fw-bold fs-5 m-0">{`от ${item.lowestPrice} ₽`}</p>
+                    <div className="mt-auto ">
+                        <div className="d-flex align-items-baseline justify-content-between">
+                            <div className="fw-bold fs-5 m-0">{`от ${item.lowestPrice} ₽`}</div>
+                            <ItemRate rate={rate} mode="single" />
+                        </div>
                     </div>
                 </div>
             </div>

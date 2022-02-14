@@ -16,11 +16,12 @@ const routes = [
     {
         path: "/tests",
         name: "TestComponent",
-        component: Tests
+        component: Tests,
+        display: false
     },
     {
         path: "/user/:userId",
-        name: "Выход",
+        name: "User",
         component: User,
         display: false
     },

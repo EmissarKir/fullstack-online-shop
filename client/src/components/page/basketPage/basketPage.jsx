@@ -33,7 +33,6 @@ const BasketPage = () => {
             window.confirm("Вы действительно хотите удалить товар из корзины?")
         ) {
             dispatch(removeItemCart(paintId));
-            console.log("remove", paintId);
         }
     };
     const handleBuy = () => {
@@ -41,7 +40,7 @@ const BasketPage = () => {
     };
     if (cartItems && cartItems.length === 0) return <EmptyCart />;
     return (
-        <>
+        <section>
             <div className="container">
                 <div className="row mb-2">
                     <div className="col-12">
@@ -98,7 +97,7 @@ const BasketPage = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </section>
     );
 };
 

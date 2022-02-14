@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import ProductCard from "../../ui/productCard/productCard";
 import ProductsFilter from "../../ui/productsFilter";
 import ActiveFilters from "../../ui/activeFilters";
 import Pagination from "../../common/pagination";
 import { usePagination } from "../../../hooks/usePagination";
-import { useSelector } from "react-redux";
 import { getAverageRate } from "../../../store/reviews";
 
 const ProductListPage = ({ items }) => {
@@ -20,12 +20,9 @@ const ProductListPage = ({ items }) => {
 
     return (
         <div className="container mt-5">
-            <div className="row">
-                <div className="col-12">
-                    <ProductsFilter />
-                    <ActiveFilters />
-                </div>
-            </div>
+            <ProductsFilter />
+            <ActiveFilters />
+
             <div className="row">
                 {dataCrop.map((item) => {
                     const rate = reviewsObj[item.templateId]

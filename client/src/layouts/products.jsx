@@ -36,13 +36,13 @@ const Products = () => {
     if (!dataStatus) return <Loader />;
 
     return (
-        <section>
+        <>
             {category && !productCategory[category] ? (
                 <ProductPage userId={category} />
             ) : (
                 <ProductListPage items={products} />
             )}
-        </section>
+        </>
     );
 };
 

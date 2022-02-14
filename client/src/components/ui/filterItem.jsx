@@ -25,7 +25,7 @@ const FilterItem = ({ item }) => {
     }, []);
 
     return (
-        <li className="nav-item dropdown me-5" ref={categoriesRef}>
+        <li className="nav-item dropdown me-5 text-center" ref={categoriesRef}>
             <a
                 type="button"
                 className="nav-link dropdown-toggle"

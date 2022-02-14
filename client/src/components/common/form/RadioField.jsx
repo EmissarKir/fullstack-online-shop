@@ -7,7 +7,7 @@ const RadioField = ({ options, name, onChange, value, label }) => {
     };
 
     return (
-        <div>
+        <div className="d-flex justify-content-around">
             {label && <label className="form-label">{label}</label>}
             <div>
                 {options.map((option) => (

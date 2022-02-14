@@ -31,11 +31,11 @@ const ActiveFilters = () => {
     if (isEmptyFilter) return null;
     return (
         <div className="mb-3">
-            <div className="d-flex dlex-row mb-3">
+            <div className="d-flex flex-row mb-md-4 mb-2">
                 <h5>Выбранные фильтры</h5>
                 <button
                     type="button"
-                    className="btn btn-outline-danger btn-sm ms-3"
+                    className="btn btn-outline-danger btn-sm ms-3 "
                     onClick={clearFilter}
                 >
                     Сбросить фильтры <i className="bi bi-x-lg ms-1"></i>

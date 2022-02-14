@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import imgPlaceHold from "../../assets/images/img-placehold.jpg";
 import { getSumItem, getVolumeItem } from "../../store/cartItems";
-import QuantityCart from "./quantity/quantityCart";
+import Quantity from "../common/quantity";
 
 const CartItem = ({
     item,
@@ -43,29 +43,29 @@ const CartItem = ({
                             to={`/products/${item.templateId}`}
                             className="text-decoration-none"
                         >
-                            <h5 className="card-title text-decoration-none text-muted">
+                            <h6 className="card-title text-decoration-none text-muted">
                                 {item.name}
-                            </h5>
+                            </h6>
                         </Link>
 
-                        <div className="d-flex flex-column align-items-center flex-lg-row">
-                            <div className="fs-3 me-lg-2">
-                                <strong className="text-nowrap">
+                        <div className="d-flex flex-column align-items-center flex-lg-row justify-content-lg-between ">
+                            <div className="mb-2">
+                                <strong className="fs-3 me-2 text-nowrap">
                                     {itemSum} ₽
                                 </strong>
-                            </div>
-                            <div className="fs-5 text-muted me-lg-auto">
-                                <strong className="text-nowrap">
+
+                                <strong className="fs-5 text-muted me-lg-auto text-nowrap">
                                     за &nbsp;{itemVolume}
                                     {item.volume}
                                 </strong>
                             </div>
-                            <QuantityCart
-                                count={item.quantity}
-                                id={item.paintId}
+
+                            <Quantity
                                 onChange={onChange}
-                                onIncrementQuantity={onIncrementQuantity}
-                                onDecrementQuantity={onDecrementQuantity}
+                                onDecrement={onDecrementQuantity}
+                                onIncrement={onIncrementQuantity}
+                                value={item.quantity}
+                                name={item.paintId}
                             />
                         </div>
                     </div>
