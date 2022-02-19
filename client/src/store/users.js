@@ -86,7 +86,7 @@ export const signUp = (payload) => async (dispatch) => {
         const data = await authService.register(payload);
         localStorageService.setTokens(data);
         dispatch(authRequestSuccess({ userId: data.userId }));
-        // history.push("/");
+        history.push("/");
     } catch (error) {
         dispatch(authRequestFailed(error.message));
     }

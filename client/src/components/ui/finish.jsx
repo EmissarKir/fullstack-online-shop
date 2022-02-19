@@ -1,8 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getCurrentUserId } from "../../store/users";
 
-const Finish = ({ userId }) => {
+const Finish = () => {
+    const userId = useSelector(getCurrentUserId());
+
     return (
         <div className="container">
             <div className="row justify-content-center text-center mt-3">
@@ -21,9 +24,6 @@ const Finish = ({ userId }) => {
             </div>
         </div>
     );
-};
-Finish.propTypes = {
-    userId: PropTypes.string
 };
 
 export default Finish;

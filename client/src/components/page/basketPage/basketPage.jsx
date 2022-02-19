@@ -11,7 +11,7 @@ import {
     updateQuantityInput
 } from "../../../store/cartItems";
 import { buyProducts } from "../../../store/products";
-import { getCurrentUserId, getIsLoggedIn } from "../../../store/users";
+import { getIsLoggedIn } from "../../../store/users";
 import CartItem from "../../ui/cartItem";
 import EmptyCart from "../../ui/emptyCart";
 import Finish from "../../ui/finish";
@@ -27,7 +27,6 @@ const BasketPage = () => {
     const [finishMessage, setFinishMessage] = useState(false);
 
     const isLoggedIn = useSelector(getIsLoggedIn());
-    const userId = useSelector(getCurrentUserId());
 
     const handleChange = (target) => {
         dispatch(updateQuantityInput(target));
@@ -59,7 +58,7 @@ const BasketPage = () => {
         }
     }, [pathname]);
     if (cartItems.length === 0 && !finishMessage) return <EmptyCart />;
-    if (finishMessage) return <Finish userId={userId} />;
+    if (finishMessage) return <Finish />;
     return (
         <section>
             <div className="container">
