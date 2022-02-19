@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.aee0b558.chunk.css",
+    "main.js": "/static/js/main.7f98108b.chunk.js",
+    "main.js.map": "/static/js/main.7f98108b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.b8452919.js",
+    "runtime-main.js.map": "/static/js/runtime-main.b8452919.js.map",
+    "static/css/2.411caf75.chunk.css": "/static/css/2.411caf75.chunk.css",
+    "static/js/2.fc0ac80a.chunk.js": "/static/js/2.fc0ac80a.chunk.js",
+    "static/js/2.fc0ac80a.chunk.js.map": "/static/js/2.fc0ac80a.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.411caf75.chunk.css.map": "/static/css/2.411caf75.chunk.css.map",
+    "static/css/main.aee0b558.chunk.css.map": "/static/css/main.aee0b558.chunk.css.map",
+    "static/js/2.fc0ac80a.chunk.js.LICENSE.txt": "/static/js/2.fc0ac80a.chunk.js.LICENSE.txt",
+    "static/media/bootstrap-icons.css": "/static/media/bootstrap-icons.7165e5d7.woff",
+    "static/media/empty-basket.07bd4631.gif": "/static/media/empty-basket.07bd4631.gif",
+    "static/media/img-placehold.75683723.jpg": "/static/media/img-placehold.75683723.jpg",
+    "static/media/paint-roller.3a38f1bd.svg": "/static/media/paint-roller.3a38f1bd.svg",
+    "static/media/palette.06dbea4a.svg": "/static/media/palette.06dbea4a.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b8452919.js",
+    "static/css/2.411caf75.chunk.css",
+    "static/js/2.fc0ac80a.chunk.js",
+    "static/css/main.aee0b558.chunk.css",
+    "static/js/main.7f98108b.chunk.js"
+  ]
+}
