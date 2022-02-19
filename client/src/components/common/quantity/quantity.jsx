@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+
+import "./quantity.css";
 
 const Quantity = ({
     onDecrement,
@@ -8,10 +10,13 @@ const Quantity = ({
     onChange,
     name,
     min,
-    max
+    max,
+    setShowTip
 }) => {
     const quantityMin = min || 1;
     const quantityMax = max || 199;
+
+    const isMaxCount = value === quantityMax;
 
     const handleChange = ({ target }) => {
         if (target.value >= quantityMin && target.value < quantityMax) {
@@ -19,27 +24,39 @@ const Quantity = ({
             onChange({ value: value, name: target.name });
         }
     };
+
+    useEffect(() => {
+        if (isMaxCount) {
+            setShowTip(true);
+        } else {
+            setShowTip(false);
+        }
+    }, [isMaxCount]);
+
     return (
-        <div className="quantityCart d-flex align-items-center mb-3 mb-lg-0">
-            <div className="border">
-                <span>
-                    <i
-                        className="bi bi-dash-lg ms-3"
-                        onClick={name ? () => onDecrement(name) : onDecrement}
-                    ></i>
-                </span>
+        <div className="quantityCart  mb-3 mb-lg-0">
+            <div className="border d-flex align-items-center">
+                <button
+                    className="btn"
+                    onClick={name ? () => onDecrement(name) : onDecrement}
+                >
+                    <i className="bi bi-dash-lg mx-auto"></i>
+                </button>
                 <input
                     type="number"
                     value={value}
                     onChange={handleChange}
                     name={name}
+                    min={quantityMin}
+                    max={quantityMax}
                 />
-                <span>
-                    <i
-                        className="bi bi-plus-lg me-3"
-                        onClick={name ? () => onIncrement(name) : onIncrement}
-                    ></i>
-                </span>
+                <button
+                    className="btn"
+                    onClick={name ? () => onIncrement(name) : onIncrement}
+                    disabled={isMaxCount}
+                >
+                    <i className="bi bi-plus-lg mx-auto"></i>
+                </button>
             </div>
         </div>
     );
@@ -51,6 +68,7 @@ Quantity.propTypes = {
     onChange: PropTypes.func.isRequired,
     name: PropTypes.string,
     min: PropTypes.number,
-    max: PropTypes.number
+    max: PropTypes.number,
+    setShowTip: PropTypes.func
 };
 export default Quantity;

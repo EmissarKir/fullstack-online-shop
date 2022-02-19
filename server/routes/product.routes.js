@@ -1,5 +1,6 @@
 const express = require("express");
 const Product = require("../models/Product");
+const Order = require("../models/Order");
 const router = express.Router({ mergeParams: true });
 
 router.get("/", async (req, res) => {
@@ -12,6 +13,32 @@ router.get("/", async (req, res) => {
     });
   }
 });
+router.post("/", async (req, res) => {
+  const array = req.body.goodsSold;
+  try {
+    for (const product of array) {
+      const { templateId, paintId, quantity } = product;
+
+      //корректировка количества товара на складе
+      await Product.updateOne(
+        { templateId: templateId, "paints.paintId": paintId },
+        {
+          $inc: {
+            "paints.$.count": -quantity,
+          },
+        }
+      );
+    }
+    // создание заказа
+    await Order.create({ ...req.body, status: "isWorking" });
+    res.send({ success: true });
+  } catch (e) {
+    res.status(500).json({
+      message: "На сервере произошла ошибка. Попробуйте позже",
+    });
+  }
+});
+
 router.get("/:category", async (req, res) => {
   const productCategory = {
     paint: "краска",

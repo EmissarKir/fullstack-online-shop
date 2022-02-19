@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import { useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import imgPlaceHold from "../../assets/images/img-placehold.jpg";
 import { getSumItem, getVolumeItem } from "../../store/cartItems";
 import Quantity from "../common/quantity";
+import Tooltip from "../common/tooltip/tooltip";
 
 const CartItem = ({
     item,
@@ -18,13 +19,15 @@ const CartItem = ({
     const itemSum = useSelector(getSumItem(item.paintId));
     const itemVolume = useSelector(getVolumeItem(item.paintId));
 
+    const [showTip, setShowTip] = useState(false);
+
     return (
         <div className="card mb-3">
             <div className="row g-0">
                 <div className="col-md-4">
                     <img
                         src={item.img ? item.img : imgPlaceHold}
-                        className="img-fluid p-5"
+                        className="img-fluid p-2 p-lg-3"
                         alt="..."
                     />
                 </div>
@@ -60,13 +63,21 @@ const CartItem = ({
                                 </strong>
                             </div>
 
-                            <Quantity
-                                onChange={onChange}
-                                onDecrement={onDecrementQuantity}
-                                onIncrement={onIncrementQuantity}
-                                value={item.quantity}
-                                name={item.paintId}
-                            />
+                            <Tooltip
+                                content="Добавлено максимальное количество"
+                                direction="top"
+                                showTip={showTip}
+                            >
+                                <Quantity
+                                    onChange={onChange}
+                                    onDecrement={onDecrementQuantity}
+                                    onIncrement={onIncrementQuantity}
+                                    value={item.quantity}
+                                    max={item.count}
+                                    name={item.paintId}
+                                    setShowTip={setShowTip}
+                                />
+                            </Tooltip>
                         </div>
                     </div>
                 </div>

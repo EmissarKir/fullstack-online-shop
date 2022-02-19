@@ -42,7 +42,7 @@ const ProductPage = () => {
     const [currentId, setCurrentId] = useState(() =>
         getInitialStatePrice(product.paints)
     );
-
+    console.log("currentId", currentId);
     const handleChange = (target) => {
         setCurrentId((prevState) => ({
             ...prevState,
@@ -57,6 +57,9 @@ const ProductPage = () => {
     const itemPrice = product.paints.find(
         (item) => item.paintId === currentId.id
     ).price;
+    const maxQuantity = product.paints.find(
+        (item) => item.paintId === currentId.id
+    ).count;
 
     const handleAddPaintCart = () => {
         const { img, templateId } = product;
@@ -81,6 +84,7 @@ const ProductPage = () => {
                         data={currentId}
                         quantity={quantity}
                         setQuantity={setQuantity}
+                        maxQuantity={maxQuantity}
                         onAddPaintCart={handleAddPaintCart}
                         redirectToCart={redirectToCart}
                         isAddCart={isAddCart}

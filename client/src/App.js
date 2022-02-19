@@ -2,15 +2,14 @@ import React, { useEffect } from "react";
 import { Route, Switch } from "react-router";
 
 import NavBar from "./components/ui/navbar/navBar.jsx";
-import Breadcrumb from "./components/ui/breadcrumbs";
 import ProtectedRoute from "./components/common/protectedRoute";
 
 import routes from "./routes";
-import Search from "./components/ui/search.jsx";
 import { getIsLoggedIn, loadUsers } from "./store/users.js";
 import { useDispatch, useSelector } from "react-redux";
 import { loadReviewsList } from "./store/reviews.js";
 import Footer from "./components/ui/footer.jsx";
+import BreadcrumbsAndSearchBar from "./components/ui/breadcrumbsAndSearchBar.jsx";
 
 const getRoutes = (routes) => {
     return routes.map((prop, key) => {
@@ -43,17 +42,7 @@ function App() {
         <div className="main-content">
             <NavBar />
             <main>
-                <div className="container">
-                    <div className="row d-flex align-items-baseline justify-content-between">
-                        <div className="col-md-6">
-                            <Breadcrumb />
-                        </div>
-                        <div className="col-md-6">
-                            <Search />
-                        </div>
-                    </div>
-                </div>
-
+                <BreadcrumbsAndSearchBar />
                 <Switch>
                     <Switch>{getRoutes(routes)}</Switch>
                 </Switch>

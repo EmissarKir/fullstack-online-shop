@@ -43,32 +43,6 @@ input {
     background-color: inherit;
 }
 
-.quantityCart input[type="number"]::-webkit-outer-spin-button,
-.quantityCart input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-/* Firefox */
-.quantityCart input[type="number"] {
-    -moz-appearance: textfield;
-}
-.quantityCart input[type="number"]:focus {
-    outline: none;
-}
-.quantityCart {
-    cursor: pointer;
-    font-size: 20px;
-}
-.quantityCart i {
-    font-size: 25px;
-}
-
-.quantityCart input {
-    max-width: 60px;
-    max-height: 45px;
-    border: none;
-    text-align: center;
-}
 .categories .dropdown {
     position: static;
 }
@@ -92,4 +66,9 @@ ul.menu-col {
     padding: 0;
     margin: 0;
     list-style: none;
+}
+
+.swiper {
+    width: 100%;
+    height: 75vh;
 }

@@ -52,6 +52,7 @@ const NavBar = () => {
                                                 ? " active"
                                                 : "")
                                         }
+                                        onClick={closeMobileMenu}
                                     >
                                         {prop.name}
                                     </Link>
@@ -77,6 +78,7 @@ const NavBar = () => {
                                                 ? " active"
                                                 : "")
                                         }
+                                        onClick={closeMobileMenu}
                                     >
                                         {prop.icon ? prop.icon : prop.name}
                                         {prop.name === "Корзина" &&

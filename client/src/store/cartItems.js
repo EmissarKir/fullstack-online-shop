@@ -26,8 +26,12 @@ const cartItemsSlice = createSlice({
             if (index === -1) {
                 state.entities.push(action.payload);
             } else {
-                state.entities[index].quantity =
+                const currentCount =
                     state.entities[index].quantity + action.payload.quantity;
+                state.entities[index].quantity =
+                    currentCount > state.entities[index].count
+                        ? state.entities[index].count
+                        : currentCount;
             }
         },
         cartQuantityIncremented: (state, action) => {
@@ -48,11 +52,14 @@ const cartItemsSlice = createSlice({
             );
             item.quantity = action.payload.value;
         },
-        cartItemRemove: (state, action) => {
+        cartItemRemoved: (state, action) => {
             const items = state.entities.filter(
                 (item) => item.paintId !== action.payload
             );
             state.entities = items;
+        },
+        cartRemoved: (state) => {
+            state.entities = [];
         }
     }
 });
@@ -63,14 +70,20 @@ const {
     cartQuantityIncremented,
     cartQuantityDecremented,
     cartQuantityInputUpdated,
-    cartItemRemove
+    cartItemRemoved,
+    cartRemoved
 } = actions;
 
 export const addItemsCart = (payload) => (dispatch) => {
     dispatch(cartItemsAdded(payload));
 };
-export const incrementQuantity = (paintId) => (dispatch) => {
-    dispatch(cartQuantityIncremented(paintId));
+export const incrementQuantity = (paintId) => (dispatch, getState) => {
+    const paint = getState().itemsCart.entities.find(
+        (item) => item.paintId === paintId
+    );
+    if (paint.quantity < paint.count) {
+        dispatch(cartQuantityIncremented(paintId));
+    }
 };
 export const decrementQuantity = (paintId) => (dispatch, getState) => {
     const paint = getState().itemsCart.entities.find(
@@ -79,14 +92,18 @@ export const decrementQuantity = (paintId) => (dispatch, getState) => {
     if (paint.quantity > 1) {
         dispatch(cartQuantityDecremented(paintId));
     } else {
-        dispatch(cartItemRemove(paintId));
+        dispatch(cartItemRemoved(paintId));
     }
 };
 export const updateQuantityInput = (value) => (dispatch) => {
     dispatch(cartQuantityInputUpdated(value));
 };
 export const removeItemCart = (paintId) => (dispatch) => {
-    dispatch(cartItemRemove(paintId));
+    dispatch(cartItemRemoved(paintId));
+};
+
+export const removeCart = () => (dispatch) => {
+    dispatch(cartRemoved());
 };
 
 // селекторы

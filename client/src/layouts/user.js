@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import TextField from "../components/common/form/textField";
+import OrdersList from "../components/ui/ordersList";
 import useForm from "../hooks/useForm";
 import { getUserById, updateUser } from "../store/users";
 
@@ -39,8 +40,8 @@ const User = () => {
     );
 
     return (
-        <div className="container mb-2">
-            <div className="container-xl px-4 mt-4">
+        <div className="container mb-2 min-vh-100">
+            <div className="px-4 mt-4">
                 <div className="row">
                     <div className="col-xl-4">
                         <div className="card mb-4 mb-xl-0">
@@ -104,6 +105,11 @@ const User = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <OrdersList />
                 </div>
             </div>
         </div>

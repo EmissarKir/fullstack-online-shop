@@ -86,7 +86,7 @@ export const signUp = (payload) => async (dispatch) => {
         const data = await authService.register(payload);
         localStorageService.setTokens(data);
         dispatch(authRequestSuccess({ userId: data.userId }));
-        history.push("/");
+        // history.push("/");
     } catch (error) {
         dispatch(authRequestFailed(error.message));
     }
@@ -137,11 +137,15 @@ export const getIsLoggedIn = () => (state) => state.users.isLoggedIn;
 export const getDataStatus = () => (state) => state.users.dataLoaded;
 
 export const getCurrentUserData = () => (state) => {
-    return state.users.entities
-        ? state.users.entities.find(
-              (item) => item._id === state.users.auth.userId
-          )
-        : null;
+    if (state.users.auth) {
+        return state.users.entities
+            ? state.users.entities.find(
+                  (item) => item._id === state.users.auth.userId
+              )
+            : null;
+    } else {
+        return {};
+    }
 };
 export const getCurrentUserId = () => (state) => state.users.auth.userId;
 

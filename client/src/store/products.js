@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice } from "@reduxjs/toolkit";
 import productService from "../services/product.service";
 import { pipe } from "../utils/withoutLodash";
 import _ from "lodash";
@@ -23,12 +23,39 @@ const productsSlice = createSlice({
         productsRequestFailed: (state, action) => {
             state.error = action.payload;
             state.isLoading = false;
+        },
+        buyProductsReceived: (state, action) => {
+            const arr = state.entities;
+            const pay = action.payload.goodsSold;
+
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < pay.length; j++) {
+                    if (arr[i].templateId === pay[j].templateId) {
+                        const innerArray = arr[i].paints;
+                        const oldValue =
+                            innerArray[
+                                innerArray.findIndex(
+                                    (item) => item.paintId === pay[j].paintId
+                                )
+                            ];
+                        oldValue.count = oldValue.count - pay[j].quantity;
+                        continue;
+                    }
+                }
+            }
         }
     }
 });
 
 const { actions, reducer: productsReducer } = productsSlice;
-const { productsRequested, productsReceived, productsRequestFailed } = actions;
+const {
+    productsRequested,
+    productsReceived,
+    productsRequestFailed,
+    buyProductsReceived
+} = actions;
+
+const buyProductsRequested = createAction("products/buyProductsRequested");
 
 export const loadProductsList = (category) => async (dispatch) => {
     dispatch(productsRequested());
@@ -46,6 +73,17 @@ export const loadProductsList = (category) => async (dispatch) => {
         } catch (error) {
             dispatch(productsRequestFailed(error.message));
         }
+    }
+};
+export const buyProducts = (payload) => async (dispatch) => {
+    dispatch(buyProductsRequested());
+    try {
+        const { content } = await productService.update(payload);
+        if (content) {
+            dispatch(buyProductsReceived(payload));
+        }
+    } catch (error) {
+        dispatch(productsRequestFailed(error.message));
     }
 };
 

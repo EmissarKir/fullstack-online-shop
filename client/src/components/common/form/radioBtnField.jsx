@@ -22,6 +22,7 @@ const RadioBtnField = ({ options, name, onChange, value, label }) => {
                             checked={option.value === value}
                             value={option.value}
                             onChange={handleChange}
+                            disabled={option.count < 1}
                         />
                         <label
                             className="btn btn-outline-secondary min-width-70"

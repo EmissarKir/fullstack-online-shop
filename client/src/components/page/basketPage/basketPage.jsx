@@ -1,23 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 import {
     decrementQuantity,
     getCartItems,
     getTotalSum,
     incrementQuantity,
+    removeCart,
     removeItemCart,
     updateQuantityInput
 } from "../../../store/cartItems";
+import { buyProducts } from "../../../store/products";
+import { getCurrentUserId, getIsLoggedIn } from "../../../store/users";
 import CartItem from "../../ui/cartItem";
 import EmptyCart from "../../ui/emptyCart";
+import Finish from "../../ui/finish";
 
 const BasketPage = () => {
+    const { pathname } = useLocation();
     const freeShippingCondition = 30000;
     const dispatch = useDispatch();
     const cartItems = useSelector(getCartItems());
     const totalSum = useSelector(getTotalSum());
     const costOfDelivery = totalSum >= freeShippingCondition ? 0 : 1500;
     const amountPayable = totalSum + costOfDelivery;
+    const [finishMessage, setFinishMessage] = useState(false);
+
+    const isLoggedIn = useSelector(getIsLoggedIn());
+    const userId = useSelector(getCurrentUserId());
 
     const handleChange = (target) => {
         dispatch(updateQuantityInput(target));
@@ -28,6 +38,7 @@ const BasketPage = () => {
     const handleDecrementQuantity = (id) => {
         dispatch(decrementQuantity(id));
     };
+
     const handleRemove = (paintId) => {
         if (
             window.confirm("Вы действительно хотите удалить товар из корзины?")
@@ -35,10 +46,20 @@ const BasketPage = () => {
             dispatch(removeItemCart(paintId));
         }
     };
+
     const handleBuy = () => {
-        console.log("cartItems", cartItems);
+        dispatch(buyProducts({ goodsSold: cartItems, amountPayable }));
+        dispatch(removeCart());
+        setFinishMessage(true);
     };
-    if (cartItems && cartItems.length === 0) return <EmptyCart />;
+
+    useEffect(() => {
+        if (finishMessage) {
+            setFinishMessage(false);
+        }
+    }, [pathname]);
+    if (cartItems.length === 0 && !finishMessage) return <EmptyCart />;
+    if (finishMessage) return <Finish userId={userId} />;
     return (
         <section>
             <div className="container">
@@ -61,7 +82,7 @@ const BasketPage = () => {
                         ))}
                     </div>
                     <div className="col-md-4">
-                        <div className="card p-2">
+                        <div className="card p-2 mb-4">
                             <table className="table">
                                 <tbody>
                                     <tr>
@@ -86,13 +107,27 @@ const BasketPage = () => {
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <button
-                                className="btn btn-danger"
-                                onClick={handleBuy}
-                            >
-                                Оформить
-                            </button>
+                            {!isLoggedIn ? (
+                                <p>
+                                    Оформить заказ могут только
+                                    зарегистрированные пользователи. Пожалуйста
+                                    &nbsp;
+                                    <Link to="/login" className="text-muted">
+                                        войдите
+                                    </Link>
+                                    &nbsp; или &nbsp;
+                                    <Link to="/register" className="text-muted">
+                                        зарегистрируйтесь.
+                                    </Link>
+                                </p>
+                            ) : (
+                                <button
+                                    className="btn btn-danger w-100"
+                                    onClick={handleBuy}
+                                >
+                                    Оформить
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>

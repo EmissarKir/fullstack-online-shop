@@ -6,8 +6,8 @@ import Loader from "../components/common/loader";
 import ProductListPage from "../components/page/productListPage";
 import ProductPage from "../components/page/productPage";
 import {
-    getDataStatus,
     getFiltredProducts,
+    getProductsLoadingStatus,
     loadProductsList
 } from "../store/products";
 
@@ -24,7 +24,7 @@ const Products = () => {
     const dispatch = useDispatch();
     const { category } = useParams();
     const products = useSelector(getFiltredProducts());
-    const dataStatus = useSelector(getDataStatus());
+    const isLoading = useSelector(getProductsLoadingStatus());
 
     useEffect(() => {
         // if /products или /products/paint,/products/enamel..., not /products/974e97f2-549d-48d1-8f10-151c1bd316c8
@@ -33,7 +33,7 @@ const Products = () => {
         }
     }, [category]);
 
-    if (!dataStatus) return <Loader />;
+    if (isLoading) return <Loader />;
 
     return (
         <>

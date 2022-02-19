@@ -5,6 +5,7 @@ import templatesReducer from "./templates";
 import productsReducer from "./products";
 import usersReducer from "./users";
 import reviewsReducer from "./reviews";
+import ordersReducer from "./orders";
 
 const rootReducer = combineReducers({
     users: usersReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     templates: templatesReducer,
     itemsCart: cartItemsReducer,
     filter: filterReducer,
-    reviews: reviewsReducer
+    reviews: reviewsReducer,
+    orders: ordersReducer
 });
 
 function createStore() {

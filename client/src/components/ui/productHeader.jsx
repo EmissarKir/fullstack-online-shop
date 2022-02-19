@@ -14,6 +14,7 @@ const ProductHeader = ({
     data,
     quantity,
     setQuantity,
+    maxQuantity,
     onAddPaintCart,
     redirectToCart,
     isAddCart,
@@ -25,7 +26,7 @@ const ProductHeader = ({
         <div className="row my-3">
             <div className="col-md-6">
                 <img
-                    className="w-100 p-5"
+                    className="w-100 p-2 p-lg-4"
                     src={product.img ? product.img : imgPlaceHold}
                     alt="product"
                 />
@@ -77,6 +78,7 @@ const ProductHeader = ({
                             <QuantityProductPage
                                 quantity={quantity}
                                 setQuantity={setQuantity}
+                                maxQuantity={maxQuantity}
                             />
                             <div className="display-5 ms-lg-auto">
                                 <strong className="text-nowrap">
@@ -90,6 +92,7 @@ const ProductHeader = ({
                             <button
                                 className="btn btn-primary btn-lg rounded-0  w-100"
                                 onClick={onAddPaintCart}
+                                disabled={maxQuantity < 1}
                             >
                                 КУПИТЬ
                             </button>
@@ -139,6 +142,7 @@ ProductHeader.propTypes = {
     onChange: PropTypes.func,
     data: PropTypes.object,
     quantity: PropTypes.number,
+    maxQuantity: PropTypes.number,
     setQuantity: PropTypes.func,
     onAddPaintCart: PropTypes.func,
     redirectToCart: PropTypes.func,

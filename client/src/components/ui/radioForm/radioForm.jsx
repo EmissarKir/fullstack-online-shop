@@ -19,6 +19,7 @@ const RadioForm = ({ array, onChange, data }) => {
                         `${item.size} ${item.volume} ` +
                         (item.color ? `${item.color}` : ""),
                     value: item.paintId,
+                    count: item.count,
                     sortKey: item.size
                 }))
                 .sort((a, b) => a.sortKey - b.sortKey);
