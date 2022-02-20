@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import RadioField from "../common/form/radioField";
+import RadioField from "./radioField";
 import { useDispatch } from "react-redux";
 import { switchSortBy } from "../../store/filters";
 
