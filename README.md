@@ -1,7 +1,7 @@
 # My Paints  - fullstack-online-shop
 
  Проект интернет-магазина по продаже лакокрасочных материалов
- #### Демо http://79.143.31.93/
+ #### Демо http://82.148.31.218/
  #### Клиент React/Redux(Toolkit,Thunk)/Axios/Bootstrap 5
  #### Сервер Node JS/Express/Mongo DB + Docker
  ### В проекте реализовано:
